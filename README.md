@@ -32,4 +32,4 @@ mvn spring-boot:run
 Open your browser and go to http://localhost:8080/tasks
 
 ## Notes
-All tasks are currently stored in memory. After restarting the app, the task list will be cleared.
+All tasks are stored in an H2 database.
