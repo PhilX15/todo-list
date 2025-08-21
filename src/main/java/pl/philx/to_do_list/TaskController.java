@@ -18,9 +18,19 @@ public class TaskController {
         return taskService.addTask(taskName);
     }
 
+    @PostMapping("/{id}/complete")
+    public Task completeTask(@PathVariable Long id) {
+        return taskService.completeTask(id);
+    }
+
     @GetMapping
     public Map<Long, Task> getTasks() {
         return taskService.getAllTasks();
+    }
+
+    @GetMapping("/{id}")
+    public Task getTask(@PathVariable Long id) {
+        return taskService.getTask(id);
     }
 
     @DeleteMapping("/{id}")

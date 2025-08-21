@@ -22,6 +22,18 @@ public class TaskService {
         return tasks;
     }
 
+    public Task getTask(Long id) {
+        return tasks.get(id);
+    }
+
+    public Task completeTask(Long id) {
+        Task task = tasks.get(id);
+        if (task != null) {
+            task.setDone(true);
+        }
+        return task;
+    }
+
     public void deleteTask(Long id) {
         tasks.remove(id);
     }
