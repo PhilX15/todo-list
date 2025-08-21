@@ -2,39 +2,39 @@ package pl.philx.to_do_list;
 
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicLong;
+import java.util.List;
 
 @Service
 public class TaskService {
-    private final Map<Long, Task> tasks = new HashMap<>();
-    private final AtomicLong counter = new AtomicLong();
+    private final TaskRepository taskRepository;
 
-    public Task addTask(String taskName) {
-        Long taskId = counter.incrementAndGet();
-        Task task = new Task(taskId, taskName, false);
-        tasks.put(taskId, task);
-        return task;
+    public TaskService(TaskRepository taskRepository) {
+        this.taskRepository = taskRepository;
     }
 
-    public Map<Long, Task> getAllTasks() {
-        return tasks;
+    public Task addTask(String taskName) {
+        Task task = new Task(taskName, false);
+        return taskRepository.save(task);
+    }
+
+    public List<Task> getAllTasks() {
+        return taskRepository.findAll();
     }
 
     public Task getTask(Long id) {
-        return tasks.get(id);
+        return taskRepository.findById(id).orElse(null);
     }
 
     public Task completeTask(Long id) {
-        Task task = tasks.get(id);
+        Task task = taskRepository.findById(id).orElse(null);
         if (task != null) {
             task.setDone(true);
+            return taskRepository.save(task);
         }
-        return task;
+        return null;
     }
 
     public void deleteTask(Long id) {
-        tasks.remove(id);
+        taskRepository.deleteById(id);
     }
 }

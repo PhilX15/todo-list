@@ -1,14 +1,19 @@
 package pl.philx.to_do_list;
 
+import jakarta.persistence.*;
+
+@Entity
 public class Task {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
     private String name;
     private boolean isDone;
 
     public Task() {}
 
-    public Task(Long id, String name, boolean isDone) {
-        this.id = id;
+    public Task(String name, boolean isDone) {
         this.name = name;
         this.isDone = isDone;
     }

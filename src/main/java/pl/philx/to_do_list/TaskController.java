@@ -2,12 +2,12 @@ package pl.philx.to_do_list;
 
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
+import java.util.List;
 
 @RestController
 @RequestMapping("/tasks")
 public class TaskController {
-    private TaskService taskService;
+    private final TaskService taskService;
 
     public TaskController(TaskService taskService) {
         this.taskService = taskService;
@@ -24,7 +24,7 @@ public class TaskController {
     }
 
     @GetMapping
-    public Map<Long, Task> getTasks() {
+    public List<Task> getTasks() {
         return taskService.getAllTasks();
     }
 
