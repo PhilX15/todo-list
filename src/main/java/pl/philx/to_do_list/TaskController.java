@@ -8,7 +8,7 @@ import java.util.List;
 @RestController
 public class TaskController {
     @GetMapping("/tasks")
-    public List<String> getTasks() {
-        return List.of("Task1", "Task2", "Task3");
+    public List<Task> getTasks() {
+        return List.of(new Task(0L, "Task1", false), new Task(1L, "Task2", true));
     }
 }
