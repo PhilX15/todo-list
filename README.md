@@ -32,4 +32,4 @@ mvn spring-boot:run
 Open your browser and go to http://localhost:8080/tasks
 
 ## Notes
-All tasks are stored in an H2 database.
+All tasks are stored in a H2 database.
